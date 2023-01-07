@@ -75,35 +75,7 @@ router.post('/login',async(req,res)=>{
         });
     }
 });
-router.post('/create',validate,cors(),async(req,res)=>{
-    try{
-        let users=await contacts.find({userId:req.user});
-        if(users.length>0){
-            users=await contacts.find({userId:req.user}).updateOne(
-                {},
-                {
-                    $push:{
-                        contact:req.body
-                    }
-                }
-            );
-        }else{
-            users=await contacts.create({
-                contact:req.bodynpm i jsonwebtoken
-                userId:req.user
-            });
-        }
-        res.status(200).json({
-            status:"success"
-        });
-        
-    }catch(e){
-        res.status(400).json({
-            status:"failed",
-            error:e.message
-        });
-    }
-});
+
 // GET USER
 router.get('/user',validate,async(req,res)=>{
     try{
